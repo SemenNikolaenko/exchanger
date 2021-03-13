@@ -1,7 +1,6 @@
 package com.example.exchanger.controller.rest;
 
 import com.example.exchanger.exception.NotEnoughMoneyException;
-import com.example.exchanger.model.Account;
 import com.example.exchanger.model.Order;
 import com.example.exchanger.model.param.OrderRequestParam;
 import com.example.exchanger.service.AccountService;
@@ -11,7 +10,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -58,7 +56,7 @@ public class OrderController {
         List<Order> allOrders = orderService.getAllActiveOrders();
         return ResponseEntity.ok().body(allOrders);
     }
-    
+
     @GetMapping("/{id}")
     public ResponseEntity executeOrder(@PathVariable("id") Long orderId, Long accountId) throws NotEnoughMoneyException {
         double totalAmountMoneyFromOrder = orderService.executeOrder(orderId);

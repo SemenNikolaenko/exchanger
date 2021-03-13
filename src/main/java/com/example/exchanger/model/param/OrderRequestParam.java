@@ -18,8 +18,6 @@ public class OrderRequestParam {
     private String convertFrom;
     private double exchangeRate;
     private String convertTo;
-    @NotNull
-    @Min(0)
     private double amount;
 
 }

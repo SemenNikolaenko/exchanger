@@ -25,6 +25,7 @@ public class AccountController {
         return accountById;
     }
 
+
     @GetMapping("/balance")
     public ResponseEntity getBalanceFromAccount(@RequestParam Long id) {
         double balance = accountService.getBalanceFromAccountById(id);
