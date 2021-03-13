@@ -15,13 +15,9 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 public class OrderRequestParam {
     private String exchangeAction;
-
     private String convertFrom;
-
     private double exchangeRate;
-
     private String convertTo;
-
     @NotNull
     @Min(0)
     private double amount;

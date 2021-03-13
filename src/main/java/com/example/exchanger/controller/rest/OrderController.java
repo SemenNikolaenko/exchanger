@@ -58,7 +58,7 @@ public class OrderController {
         List<Order> allOrders = orderService.getAllActiveOrders();
         return ResponseEntity.ok().body(allOrders);
     }
-
+    
     @GetMapping("/{id}")
     public ResponseEntity executeOrder(@PathVariable("id") Long orderId, Long accountId) throws NotEnoughMoneyException {
         double totalAmountMoneyFromOrder = orderService.executeOrder(orderId);
