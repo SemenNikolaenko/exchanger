@@ -1,6 +1,7 @@
 package com.example.exchanger.controller.rest;
 
 import com.example.exchanger.exception.NotEnoughMoneyException;
+import com.example.exchanger.model.Account;
 import com.example.exchanger.model.Order;
 import com.example.exchanger.model.param.OrderRequestParam;
 import com.example.exchanger.service.AccountService;
@@ -26,13 +27,15 @@ public class OrderController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity createOrder(OrderRequestParam params, Long accountId) {
+    public ResponseEntity createOrder(@RequestBody OrderRequestParam params, @RequestParam Long accountId) {
         Order newOrder = null;
         if (params.getExchangeAction().equalsIgnoreCase("BUY")) {
-            newOrder = orderService.addOrderToBuy(params, accountService.getAccountById(accountId));
+            Account account = accountService.getAccountById(accountId);
+            newOrder = orderService.addOrderToBuy(params,account);
         }
         if (params.getExchangeAction().equalsIgnoreCase("SELL")) {
-            newOrder = orderService.addOrderToSell(params, accountService.getAccountById(accountId));
+            Account account = accountService.getAccountById(accountId);
+            newOrder = orderService.addOrderToSell(params, account);
         }
 
         if (newOrder != null) return ResponseEntity.ok().body(newOrder);
